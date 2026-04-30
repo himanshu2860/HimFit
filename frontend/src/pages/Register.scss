@@ -1,0 +1,278 @@
+.register-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, rgba(15, 255, 119, 0.12), transparent 25%),
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.08), transparent 15%),
+    #050608;
+  overflow: hidden;
+}
+
+.register-background {
+  position: absolute;
+  inset: 0;
+  background: 
+    url('https://wallpapercave.com/wp/wp16257899.webp') center/cover no-repeat;
+  filter: brightness(0.6);
+  z-index: 0;
+}
+
+.register-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.register-content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 460px);
+  padding: 2rem 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.brand-section {
+  text-align: center;
+  color: #ffffff;
+}
+
+.brand-badge {
+  margin: 0 auto 0.6rem;
+  display: inline-flex;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #12ee06;
+  text-transform: uppercase;
+}
+
+.brand-tagline {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(220, 237, 12, 0.82);
+  font-weight: 700;
+}
+
+.back-button {
+  height: 52px;              /* 🔥 SAME HEIGHT */
+  padding: 0 18px;           /* remove vertical padding */
+
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+
+  font-weight: 500;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+/* Chrome, Safari, Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+.back-button:hover {
+  background: rgba(0,255,100,0.1);
+  border-color: #00ff88;
+  color: #00ff88;
+}
+.button-row {
+  display: flex;
+
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.card-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 2.3vw, 2.4rem);
+  color: #ffffff;
+}
+
+.card-header p {
+  margin: 0;
+  color: rgba(227, 239, 14, 0.995);
+  line-height: 1.6;
+}
+
+.register-form {
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.input-label {
+  display: grid;
+  gap: 0.55rem;
+  color: rgb(255, 254, 254);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 0.95rem 1rem;
+}
+
+.input-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 14px;
+  background: rgba(97, 255, 88, 0.14);
+  color: #61ff58;
+  font-size: 1rem;
+}
+
+.input-group input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #f8fafc;
+  font-size: 1rem;
+  outline: none;
+}
+.input-group:focus-within {
+  border: 1px solid #61ff58;
+  box-shadow: 0 0 12px rgba(97, 255, 88, 0.3);
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.form-meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.93rem;
+  line-height: 1.4;
+}
+
+.checkbox-label input {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 4px;
+  accent-color: #61ff58;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.checkbox-label a {
+  color: #5fd9ff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.checkbox-label a:hover {
+  color: #7fe9ff;
+  text-decoration: underline;
+}
+
+.footer-link {
+  color: #5fd9ff;
+  text-decoration: none;
+  font-size: 0.93rem;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #7fe9ff;
+  text-decoration: underline;
+}
+
+.submit-button {
+  flex: 1;                  /* 🔥 takes remaining space */
+  height: 52px;
+
+  font-size: 1rem;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #5cff6d 0%, #29d84a 100%);
+  color: #07170b;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 30px rgba(92, 255, 109, 0.25);
+}
+.submit-button:active {
+  transform: scale(0.98);
+}
+
+.error {
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.card-footer {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+}
+
+/* ✅ NORMAL STYLING (APPLIES EVERYWHERE) */
+.register-card {
+  background: rgba(10, 15, 25, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 2.25rem 2rem;
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ✅ ONLY MOBILE STYLING */
+@media (max-width: 520px) {
+  .register-content {
+    padding: 1.5rem 1rem 2rem;
+  }
+}

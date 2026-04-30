@@ -1,0 +1,372 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.history-page {
+   flex-direction: row;
+ display:flex;
+ flex:1;
+  min-height: 0;
+  width:100%;
+  background: #0a0f1a;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  font-size: 1rem;
+
+  &:hover {
+    color: #ff1a1a;
+    transform: scale(1.1);
+  }
+}
+
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 1rem;
+}
+
+.user-pill img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid #61ff58;
+}
+
+.user-name {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.2rem;
+}
+
+.user-status {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #61ff58;
+  font-weight: 700;
+}
+
+
+.success {
+  color: #5cff6d;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  color: #61ff58;
+  background: rgba(97, 255, 88, 0.08);
+}
+
+
+.history-content {
+  padding: 2.5rem 1.5rem;
+  display: flex;             
+  flex-direction: column;    
+  min-width: 0;
+  gap: 2rem;
+  width: 100%;
+  flex:1;
+    min-height: 100%;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+}
+
+.history-header h1 {
+  font-size: clamp(2rem, 2.6vw, 2.8rem);
+  margin-bottom: 0.5rem;
+}
+
+.history-header p {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 45rem;
+}
+
+
+.history-filter {
+  display: inline-flex;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 0.35rem;
+}
+
+
+.filter-button {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.filter-button.active {
+  background: #61ff58;
+  color: #000000;
+}
+
+
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  
+}
+.logout-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #ff6b6b;
+  }
+}
+
+.summary-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 1.35rem 1.5rem;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.summary-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+}
+
+.summary-value {
+  font-size: 1.65rem;
+  font-weight: 700;
+}
+
+.summary-value.highlight {
+  color: #61ff58;
+}
+
+.summary-value.accent {
+  color: #5fd9ff;
+}
+
+.timeline-section {
+  position: relative;
+  padding-left: 50px;
+}
+
+.timeline-line {
+  display: none;
+  position: absolute;
+  left: 34px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, #61ff58 0%, rgba(97, 255, 88, 0.15) 100%);
+}
+
+.timeline-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+   transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 1.35rem 1.5rem;
+}
+
+.timeline-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;           
+  width: 2px;
+  height: 100%;
+  
+  background: linear-gradient(
+    to bottom,
+    #c2ff58,
+    rgba(97, 255, 88, 0.2)
+  );
+
+  border-radius: 2px;
+}
+.timeline-card:hover {
+  transform: translateY(-2px);
+}
+
+.food-thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timeline-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.timeline-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.timeline-card-meta {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.04em;
+}
+
+.nutrition-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.nutrition-tags span {
+  font-size: 0.78rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 12px;
+  background: rgba(97, 255, 88, 0.12);
+  color: #c7ffd5;
+}
+
+.timeline-card-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #61ff58;
+}
+
+.history-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.65rem;
+   margin-top: auto;  
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #61ff58;
+}
+
+@media (max-width: 1100px) {
+  .history-page {
+    
+     
+   flex-direction: column; 
+  width: 100%;
+  min-width: 0;
+}
+  }
+
+  
+
+  .user-pill {
+    display: none;
+  }
+
+  .history-content {
+    padding: 1.5rem;
+  }
+
+  .summary-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+
+@media (max-width: 720px) {
+  .history-content {
+    padding: 1.25rem;
+  }
+
+  .history-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-card {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-card-value {
+    align-self: flex-start;
+  }
+}
+
