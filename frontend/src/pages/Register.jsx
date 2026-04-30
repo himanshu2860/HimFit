@@ -70,7 +70,7 @@ navigate("/login");
 
   } catch (error) {
     console.error(error);
-    setErrorMsg("Failed to send verification email");
+  setErrorMsg(error.message || "Registration failed");
   } finally {
     setLoading(false);
   }
