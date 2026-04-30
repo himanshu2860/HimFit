@@ -5,7 +5,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
-import Verify from "./pages/Verify";
 import Coach from "./pages/Coach";
 import Profile from "./pages/Profile";
 function App() {
