@@ -29,14 +29,14 @@ const [proteinGoal, setProteinGoal] = useState("")
   const parts = email.split("@");
 
   if (parts.length !== 2) {
-    setErrorMsg("Invalid email format ❌");
+    setErrorMsg("Invalid email format ");
     return;
   }
 
   const domain = parts[1].toLowerCase();
 
   if (!allowedDomains.includes(domain)) {
-    setErrorMsg("Please use a valid email ❌");
+    setErrorMsg("Please use a valid email ");
     return;
   }
 
