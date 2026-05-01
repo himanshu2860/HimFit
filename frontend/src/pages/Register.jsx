@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import './Register.scss';
+import api from "../api/axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -43,37 +44,26 @@ const [proteinGoal, setProteinGoal] = useState("")
   setLoading(true);
 
   try {
-   const res = await fetch("http://localhost:5000/api/auth/register", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
+  const res = await api.post("/api/auth/register", {
     username,
     email,
     password,
     calorieGoal,
     proteinGoal,
     fatGoal,
-  }),
-});
+  });
 
-const data = await res.json();
+  const data = res.data;
 
-if (!res.ok) {
-  throw new Error(data.message || "Registration failed");
+  alert("Registered successfully!");
+  navigate("/login");
+
+} catch (error) {
+  setErrorMsg(error.response?.data?.message || "Registration failed");
+} finally {
+  setLoading(false);
 }
 
-alert("Registered successfully!");
-
-navigate("/login"); 
-
-  } catch (error) {
-    console.error(error);
-  setErrorMsg(error.message || "Registration failed");
-  } finally {
-    setLoading(false);
-  }
 };
     
   return (
