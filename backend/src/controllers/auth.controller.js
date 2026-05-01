@@ -8,7 +8,7 @@ exports.register = async (req, res) => {
   try {
     const { username, email, password, goalCalories, goalProtein, goalFat } = req.body;
 
-    const normalizedEmail = email.toLowerCase();
+   const normalizedEmail = email.trim().toLowerCase();
 
     const existing = await User.findOne({ email: normalizedEmail });
     if (existing) {
@@ -43,7 +43,7 @@ exports.login = async (req, res) => {
       console.log("LOGIN HIT")
     const { email, password } = req.body
 
-    const normalizedEmail = email.toLowerCase();
+    const normalizedEmail = email.trim().toLowerCase();
 const user = await User.findOne({ email: normalizedEmail });
       if (!user) return res.status(400).json({ message: "Invalid email" })
       

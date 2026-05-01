@@ -14,7 +14,6 @@ app.use(cors({
   credentials: true
 }));
 
-app.options("*", cors());
 
 const authRoutes = require("./routes/auth.routes");
 const foodRoutes = require("./routes/food.routes");
