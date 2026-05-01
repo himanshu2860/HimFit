@@ -18,6 +18,16 @@ email: {
   goalProtein: { type: Number, default: 50 },
   goalFat: { type: Number, default: 70 },
 
+  recommendedCalories: { type: Number, default: null },
+  consumedCalories: { type: Number, default: 0 },
+consumedProtein: { type: Number, default: 0 },
+consumedCarbs: { type: Number, default: 0 },
+consumedFat: { type: Number, default: 0 },
+
+lastTrackedDate: { type: String },
+bmi: { type: Number, default: null },
+heightCm: Number,
+weightKg: Number,
 
 
   age: Number,

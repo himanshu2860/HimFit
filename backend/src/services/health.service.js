@@ -24,30 +24,42 @@ const calculateHealth = ({
   goal
 }) => {
 
-  // ✅ FIX: validation inside function
-  if (!heightInput || !weightInput || heightInput <= 0 || weightInput <= 0) {
+
+   const height = Number(heightInput);
+  const weight = Number(weightInput);
+  const ageNum = Number(age); 
+
+ 
+ if (!height || !weight || height <= 0 || weight <= 0)  {
     return {
-      heightCm: 0,
-      weightKg: 0,
-      bmi: 0,
-      tdee: 0,
-      dailyCalories: 0
-    };
+  heightCm: 0,
+  weightKg: 0,
+  bmi: 0,
+  tdee: 0,
+  recommendedCalories: 0
+};
   }
 
-  const heightCm = convertHeightToCm(heightInput, heightUnit);
-  const weightKg = convertWeightToKg(weightInput, weightUnit);
+ const heightCm = convertHeightToCm(height, heightUnit);
+const weightKg = convertWeightToKg(weight, weightUnit);
 
-  const heightM = heightCm / 100;
+ const heightCmNum = Number(heightCm);
+const weightKgNum = Number(weightKg);
 
-  const bmi = weightKg / (heightM * heightM);
+if (isNaN(heightCmNum) || isNaN(weightKgNum)) {
+  throw new Error("Invalid height or weight");
+}
+
+
+const heightM = heightCmNum / 100;
+const bmi = weightKgNum / (heightM * heightM);
 
   let bmr;
 
   if (gender === "male") {
-    bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
+   bmr = 10 * weightKgNum + 6.25 * heightCmNum - 5 * ageNum + 5;
   } else {
-    bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
+    bmr = 10 * weightKgNum + 6.25 * heightCmNum - 5 * ageNum - 161;
   }
 
   const activityMap = {
@@ -67,13 +79,13 @@ const calculateHealth = ({
     dailyCalories += 300;
   }
 
-  return {
-    heightCm: Number(heightCm.toFixed(2)),
-    weightKg: Number(weightKg.toFixed(2)),
-    bmi: Number(bmi.toFixed(1)),
-    tdee: Math.round(tdee),
-    dailyCalories: Math.round(dailyCalories)
-  };
+ return {
+  heightCm: Number(heightCmNum.toFixed(2)),
+  weightKg: Number(weightKgNum.toFixed(2)),
+  bmi: Number(bmi.toFixed(1)),
+  tdee: Math.round(tdee),
+recommendedCalories: Math.round(dailyCalories)
+};
 };
 
 

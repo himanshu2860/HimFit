@@ -3,6 +3,10 @@ const { calculateHealth } = require("../services/health.service");
 
 const updateProfile = async (req, res) => {
   try {
+
+     if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     const userId = req.user.id;
 
     const {
@@ -17,7 +21,10 @@ const updateProfile = async (req, res) => {
       dietType
     } = req.body;
 
-  
+   if (!heightInput || !weightInput || !age || !gender) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+    
     const healthData = calculateHealth({
       heightInput,
       heightUnit,
