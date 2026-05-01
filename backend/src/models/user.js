@@ -2,8 +2,17 @@ const mongoose = require("mongoose")
 
 const userSchema = new mongoose.Schema({
   username: String,
-  email: { type: String, unique: true },
-  password: String,
+email: {
+  type: String,
+  required: true,
+  unique: true,
+  lowercase: true,
+  trim: true
+},
+ password: {
+  type: String,
+  required: true
+},
 
   goalCalories: { type: Number, default: 2000 },
   goalProtein: { type: Number, default: 50 },

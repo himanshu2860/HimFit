@@ -4,89 +4,37 @@ const jwt = require("jsonwebtoken")
 
 
 
-// REGISTER
 exports.register = async (req, res) => {
-    try {
-  console.log("PATH:", require.resolve("../models/user"))
-      console.log("USER MODEL:", User)
-      
-       console.log("BODY:", req.body);
-      const { username, email, password,  goalCalories, goalProtein, goalFat } = req.body
-      
-      const allowedDomains = [
-  "gmail.com",
-  "yahoo.com",
-  "outlook.com",
-  "hotmail.com"
-];
+  try {
+    const { username, email, password, goalCalories, goalProtein, goalFat } = req.body;
 
-const parts = email.split("@");
+    const normalizedEmail = email.toLowerCase();
 
-if (parts.length !== 2) {
-  return res.status(400).json({ message: "Invalid email format ❌" });
-}
-
-const domain = parts[1].toLowerCase();
-
-if (!allowedDomains.includes(domain) || email.length < 10) {
-  return res.status(400).json({
-    message: "Please use a valid email (gmail, outlook, etc.)"
-  });
-      }
-      
-
-
-    const existing = await User.findOne({ email })
+    const existing = await User.findOne({ email: normalizedEmail });
     if (existing) {
-      return res.status(400).json({ message: "User already exists" })
+      return res.status(400).json({ message: "User already exists" });
     }
 
-    const hash = await bcrypt.hash(password, 10)
+    const hash = await bcrypt.hash(password, 10);
 
-   const user = await User.create({
-  username,
-  email,
-  password: hash,
-  goalCalories: goalCalories || 2500,
-  goalProtein: goalProtein || 100,
-  goalFat: goalFat || 70
-})
-      
+    await User.create({
+      username,
+      email: normalizedEmail,
+      password: hash,
+      goalCalories: goalCalories || 2500,
+      goalProtein: goalProtein || 100,
+      goalFat: goalFat || 70
+    });
 
-const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
-
-user.otp = otp;
-user.otpExpiry = Date.now() + 5 * 60 * 1000; // 5 minutes
-
-await user.save();
-
-
-const isDev = process.env.DEV_MODE === "true";
-
-if (isDev) {
-  console.log("🔥 DEV OTP:", otp);   // 👈 THIS IS KEY
-} else {
-  try {
-    await sendOTP(user.email, otp);
-  } catch (emailError) {
-    console.log("EMAIL ERROR:", emailError);
-  }
-}
-      
-
- 
-return res.status(201).json({
-  message: "OTP sent to your email. Please verify."
-});
-
-
+    return res.status(201).json({
+      message: "User registered successfully"
+    });
 
   } catch (err) {
-   console.log("REGISTER ERROR:", err)  
-    res.status(500).json({ message: "Server error" })
+    console.log(err);
+    res.status(500).json({ message: "Server error" });
   }
-}
+};
 
 
 
@@ -95,14 +43,10 @@ exports.login = async (req, res) => {
       console.log("LOGIN HIT")
     const { email, password } = req.body
 
-    const user = await User.findOne({ email })
+    const normalizedEmail = email.toLowerCase();
+const user = await User.findOne({ email: normalizedEmail });
       if (!user) return res.status(400).json({ message: "Invalid email" })
       
-      if (!user.isVerified) {
-  return res.status(400).json({
-    message: "Please verify your email first ❌"
-  });
-}
 
     const match = await bcrypt.compare(password, user.password)
     if (!match) return res.status(400).json({ message: "Invalid password" })
