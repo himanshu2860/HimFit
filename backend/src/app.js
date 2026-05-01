@@ -3,13 +3,15 @@ const cors = require("cors")
 
 const app = express()
 
-app.use(express.json())
-const allowedOrigins = [
-  "https://him-fit.vercel.app",  
-  "http://localhost:5173"        
-];
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://him-fit.vercel.app"
+  ],
+  credentials: true
+}));
 
-app.use(cors())
+app.use(express.json())
 
 const authRoutes = require("./routes/auth.routes")
 const foodRoutes = require("./routes/food.routes")
@@ -23,7 +25,6 @@ app.use("/api/workout", workoutRoutes);
 app.use("/api/diet", dietRoutes)
 app.use("/api/user", userRoutes)
 app.use("/api/auth", authRoutes)
-
 app.use("/api/food", foodRoutes)
 
-module.exports = app  
+module.exports = app
