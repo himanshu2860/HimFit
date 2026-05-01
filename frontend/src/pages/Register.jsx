@@ -45,13 +45,13 @@ const [proteinGoal, setProteinGoal] = useState("")
 
   try {
   const res = await api.post("/api/auth/register", {
-    username,
-    email,
-    password,
-    calorieGoal,
-    proteinGoal,
-    fatGoal,
-  });
+  username,
+  email,
+  password,
+  goalCalories: calorieGoal,
+  goalProtein: proteinGoal,
+  goalFat: fatGoal,
+});
 
   const data = res.data;
 
