@@ -3,14 +3,20 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-
+import { useLocation } from "react-router-dom";
 export default function Layout() {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
-
+const location = useLocation();
   const pageRef = useRef(null);
 
+
+  useEffect(() => {
+  setIsSidebarOpen(false);
+  }, [location]);
+  
+  
   useEffect(() => {
     gsap.fromTo(
       pageRef.current,
@@ -30,7 +36,8 @@ export default function Layout() {
       
       <Sidebar 
   handleLogout={handleLogout} 
-  isOpen={isSidebarOpen}
+        isOpen={isSidebarOpen}
+         setIsSidebarOpen={setIsSidebarOpen} 
       />
       {isSidebarOpen && (
   <div 

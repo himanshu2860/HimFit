@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import gsap from "gsap";
-export default function Sidebar({ handleLogout, isOpen }) {
+export default function Sidebar({ handleLogout, isOpen, setIsSidebarOpen  }) {
     return (
         <aside className={`sidebar ${isOpen ? "open" : ""}`}>
             <div className="sidebar-header">
@@ -10,7 +10,8 @@ export default function Sidebar({ handleLogout, isOpen }) {
             <nav className="sidebar-nav">
 
               <NavLink
-  to="/dashboard"
+            to="/dashboard"
+             onClick={() => setIsSidebarOpen(false)} 
   className={({ isActive }) =>
     isActive ? "nav-item active" : "nav-item"
   }
@@ -21,7 +22,9 @@ export default function Sidebar({ handleLogout, isOpen }) {
 
 
                <NavLink
-  to="/history"
+            to="/history"
+              onClick={() => setIsSidebarOpen(false)} 
+            
   className={({ isActive }) =>
     isActive ? "nav-item active" : "nav-item"
   }
@@ -33,7 +36,8 @@ export default function Sidebar({ handleLogout, isOpen }) {
 
                 
                 <NavLink
-  to="/coach"
+            to="/coach"
+              onClick={() => setIsSidebarOpen(false)} 
   className={({ isActive }) =>
     isActive ? "nav-item active" : "nav-item"
   }
@@ -45,7 +49,9 @@ export default function Sidebar({ handleLogout, isOpen }) {
                 
 
                               <NavLink
-  to="/profile"
+            to="/profile"
+             onClick={() => setIsSidebarOpen(false)} 
+            
   className={({ isActive }) =>
     isActive ? "nav-item active" : "nav-item"
   }
@@ -57,10 +63,15 @@ export default function Sidebar({ handleLogout, isOpen }) {
             </nav>
 
             <div className="sidebar-footer">
-                <button onClick={handleLogout} className="logout-btn">
-                   
-                    <span>Logout</span>
-                </button>
+          <button
+          onClick={() => {
+            handleLogout();
+            setIsSidebarOpen(false); 
+          }}
+          className="logout-btn"
+        >
+          <span>Logout</span>
+        </button>
             </div>
         </aside>
     )
